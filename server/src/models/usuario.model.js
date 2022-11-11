@@ -9,11 +9,18 @@ const getAll = async () => {
   return db.collection('usuarios').find().toArray();
 };
 
-const newUser = async ({ email, senha }) => {
+const getById = async ({ id }) => {
   const db = await connection();
-  const user = await db.collection('usuarios').insertOne({ email, senha });
+  const user = await db.collection('usuarios').findOne({ _id: ObjectId(id) });
+  const { nome, email } = user;
+  return { id, nome, email };
+};
+
+const newUser = async ({ nome, email, senha }) => {
+  const db = await connection();
+  const user = await db.collection('usuarios').insertOne({ nome, email, senha });
   const { insertedId: _id } = user;
-  return { email, _id };
+  return { _id, nome, email };
 };
 
 const userExists = async ({ email, id }) => {
@@ -51,10 +58,11 @@ const requestLogin = async (req, res) => {
 
   if (!usuario) return res.status(401).json({ message: 'Usuário não encontrado.' });
 
-  const { _id } = usuario;
+  const { _id, nome } = usuario;
   const token = jwt.sign(
     {
       userId: _id,
+      nome,
       email,
     },
     SECRET,
@@ -62,9 +70,9 @@ const requestLogin = async (req, res) => {
       expiresIn: 1440,
     },
   );
-  return res.status(201).json({ email, token });
+  return res.status(201).json({ token, nome });
 };
 
 export {
-  login, requestLogin, getAll, newUser, userExists, deleta, atualiza,
+  login, requestLogin, getAll, newUser, userExists, deleta, atualiza, getById,
 };

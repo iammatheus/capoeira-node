@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
   public mostraImagem(imagemURL: string): string {
     return (imagemURL !== '' && imagemURL !== null)
-    ? `./assets/foto2.png`
+    ? ``
     : 'assets/img/sem-imagem.png';
   }
 

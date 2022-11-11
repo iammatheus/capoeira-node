@@ -3,7 +3,7 @@ import { Router } from 'express';
 import VerifyToken from '../middleware/usuarios.middleware';
 import { requestLogin } from '../models/usuario.model';
 import {
-  getAll, createUser, deleteUser, updateUser,
+  getAll, createUser, deleteUser, updateUser, getUserById,
 } from '../controllers/usuario.controller';
 
 // paginação - model
@@ -43,9 +43,10 @@ routes.get('/home/filiados', getAllFiliadosHome);
 // usuários
 routes.post('/login', requestLogin);
 routes.get('/usuarios', VerifyToken, getAll);
-routes.post('/usuario', VerifyToken, createUser);
-routes.delete('/usuario/:id', VerifyToken, deleteUser);
-routes.put('/usuario/:id', VerifyToken, updateUser);
+routes.get('/usuarios/:id', VerifyToken, getUserById);
+routes.post('/usuarios', VerifyToken, createUser);
+routes.delete('/usuarios/:id', VerifyToken, deleteUser);
+routes.put('/usuarios/update/:id', VerifyToken, updateUser);
 
 // eventos
 routes.get('/eventos', VerifyToken, paginatedEvent);
