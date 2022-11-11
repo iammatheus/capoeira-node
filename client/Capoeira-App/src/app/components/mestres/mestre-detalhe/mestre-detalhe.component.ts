@@ -67,8 +67,6 @@ export class MestreDetalheComponent implements OnInit {
             this.mestre = { ...mestre['diretoria'] };
             this.form.patchValue(this.mestre);
 
-            console.log(this.mestre)
-
             if (this.mestre.imagemUrl !== '') {
               this.imagemURL = `${environment.apiURL}resources/images/${this.mestre.imagemUrl}`;
             }

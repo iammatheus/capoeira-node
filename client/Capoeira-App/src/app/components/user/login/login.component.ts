@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public login(): void {~
+  public login(): void {
     this.spinner.show();
 
     this.accountService.login(this.model).subscribe(

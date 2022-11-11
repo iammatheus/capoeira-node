@@ -71,7 +71,6 @@ export class FiliadoDetalheComponent implements OnInit {
           (filiado: Filiado) => {
             this.filiado = { ...filiado['filiado'] };
             this.form.patchValue(this.filiado);
-            console.log(filiado)
 
             if (this.filiado.imagemUrl !== '') {
               this.imagemURL = `${environment.apiURL}resources/images/${this.filiado.imagemUrl}`;

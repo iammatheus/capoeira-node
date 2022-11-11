@@ -49,7 +49,6 @@ export class EventoService {
   }
 
   public put(evento: Evento): Observable<Evento>{
-    console.log('teste update')
     return this.http.put<Evento>(`${this.baseURL}/${evento._id}`, evento);
   }
 

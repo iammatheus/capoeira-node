@@ -3,7 +3,7 @@ import { AccountService } from '@app/services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorField } from '@app/helpers/ValidatorField';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -21,7 +21,8 @@ export class PerfilComponent implements OnInit {
     private accountService: AccountService,
     private router: Router,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   get controls(): any {
@@ -31,6 +32,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.validation();
     this.carregarUsuario();
+
   }
 
   onSubmit(): void {
@@ -53,7 +55,7 @@ export class PerfilComponent implements OnInit {
 
   private carregarUsuario(): void {
     this.spinner.show();
-    this.accountService.getUser().subscribe(
+    this.accountService.getUserById().subscribe(
       (userReturn: UserUpdate) => {
         this.userUpdate = userReturn;
         this.form.patchValue(this.userUpdate);
@@ -67,8 +69,6 @@ export class PerfilComponent implements OnInit {
       () => this.spinner.hide(),
     )
   }
-
-
 
   public validation(): void {
     const formOptions: AbstractControlOptions = {

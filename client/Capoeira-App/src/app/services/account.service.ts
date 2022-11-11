@@ -5,6 +5,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { map, take } from 'rxjs/operators';
 import { UserUpdate } from '@app/models/Identity/UserUpdate';
+import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AccountService {
@@ -50,8 +51,13 @@ export class AccountService {
     return this.http.get<UserUpdate>(`${this.baseURL}/getUser`).pipe(take(1));
   }
 
+  public getUserById(): Observable<UserUpdate> {
+    const userId = jwt_decode(localStorage.getItem('user'));
+    return this.http.get<UserUpdate>(`${this.baseURL}/usuarios/${userId['userId']}`).pipe(take(1));
+  }
+
   public updateUser(model: UserUpdate): Observable<void> {
-    return this.http.put<UserUpdate>(`${this.baseURL}/updateUser`, model).pipe(
+    return this.http.put<UserUpdate>(`${this.baseURL}/update/updateUser`, model).pipe(
       take(1),
       map((user: UserUpdate) => {
         this.setCurrentUser(user);

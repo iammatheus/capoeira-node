@@ -24,10 +24,10 @@ class App {
       mongoose.connect('mongodb://127.0.0.1:27017').then(() => {
         console.log('Conectado ao banco');
       }).catch((err) => {
-        console.log(`Erro conexão banco: ${err}`);
+        console.error(`Erro conexão banco: ${err}`);
       });
     } catch (err) {
-      console.log(`Houve um erro ao conectar-se ao banco ${err}`);
+      console.error(`Houve um erro ao conectar-se ao banco ${err}`);
     }
   }
 
