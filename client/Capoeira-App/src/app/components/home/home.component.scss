@@ -24,7 +24,6 @@ video {
   color: #28D146;
 }
 
-
 //quem-somos
 .img-back{
   background: url('../../../assets/background-quem-somos.webp') no-repeat center center fixed;
@@ -186,12 +185,22 @@ body {
   }
 }
 
+.teste {
+  filter: drop-shadow(0px 0px 0px #000);
+}
+
 @media screen and (max-width: 992px) {
   .mySwiper2 {
     width: 100%;
   }
   .filial {
     justify-content: center !important;
+  }
+  .overlay {
+    flex-direction: column;
+    h1 {
+      font-size: 3rem;
+    }
   }
 }
 @media screen and (max-width: 768px) {
@@ -219,15 +228,19 @@ body {
     }
   }
 }
+@media screen and (max-width: 550px) {
+  .mySwiper{
+    display: none;
+  }
+  .overlay {
+    flex-direction: column;
+    h1 {
+      display: none;
+    }
+  }
+}
 @media screen and (max-width: 430px) {
   .mySwiper2 {
     height: auto;
   }
 }
-
-@media screen and (max-width: 550px) {
-  .mySwiper{
-    display: none;
-  }
-}
-

@@ -70,14 +70,3 @@ routes.delete('/filiados/:id', VerifyToken, deletarFiliado);
 routes.get('/filiados/:id', VerifyToken, getFiliadoById);
 
 export default routes;
-
-// { cadastro de evento:
-//   "titulo": "Testando mais um cadastro",
-//   "local": "Aqui na minha casa",
-//   "dataEvento": "04/11/2022",
-//   "imagemUrl": "qualquerporra.png",
-//   "telefone": "21999999999",
-//   "email": "meusaco.com",
-//   "userId": "numsei",
-//   "descricao": "arrombado é quem leu"
-// }

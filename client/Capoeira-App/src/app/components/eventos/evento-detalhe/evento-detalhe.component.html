@@ -39,18 +39,6 @@
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group col-md-12">
-                <label>Descricao</label>
-                  <textarea class="form-control"
-                    [ngClass]="cssValidator(controls.descricao)"
-                    formControlName="descricao"
-                    placeholder="Insira a descrição"
-                    [(ngModel)]="evento.descricao"
-                    cols="30"
-                    rows="5"></textarea>
-              </div>
-            </div>
-            <div class="form-row">
               <div class="form-group col-md-3">
                 <label>Telefone</label>
                 <input type="text" class="form-control is-invalid" [ngClass]="cssValidator(controls.telefone)"
@@ -69,6 +57,18 @@
                   placeholder="e-mail" [(ngModel)]="evento.email">
                 <div *ngIf="controls.email.errors?.required" class="invalid-feedback">E-mail é obrigatório!</div>
                 <div *ngIf="controls.email.errors?.email" class="invalid-feedback">Insira um e-mail válido!</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Descricao</label>
+                  <textarea class="form-control"
+                    [ngClass]="cssValidator(controls.descricao)"
+                    formControlName="descricao"
+                    placeholder="Insira a descrição"
+                    [(ngModel)]="evento.descricao"
+                    cols="30"
+                    rows="5"></textarea>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@
               <b>Contatos</b><br>
               <small class="text-muted">Telefone: {{evento.telefone}}</small>
               <br>
-              <small class="text-muted">e-mail: {{evento.email}}</small>
+              <small class="text-muted">E-mail: {{evento.email}}</small>
             </p>
             <div class="row">
               <div class="icon-block col-md-8 iconesSociais">

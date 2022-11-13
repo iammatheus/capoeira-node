@@ -40,10 +40,12 @@ const deleta = async ({ id }) => {
   return { id };
 };
 
-const atualiza = async ({ id, email, senha }) => {
+const atualiza = async ({
+  id, nome, email, senha,
+}) => {
   const db = await connection();
-  await db.collection('usuarios').updateOne({ _id: ObjectId(id) }, { $set: { email, senha } });
-  return { id, email };
+  await db.collection('usuarios').updateOne({ _id: ObjectId(id) }, { $set: { nome, email, senha } });
+  return { id, nome, email };
 };
 
 const login = async ({ email, senha }) => {
@@ -66,9 +68,6 @@ const requestLogin = async (req, res) => {
       email,
     },
     SECRET,
-    {
-      expiresIn: 1440,
-    },
   );
   return res.status(201).json({ token, nome });
 };

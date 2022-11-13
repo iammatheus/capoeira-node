@@ -28,6 +28,7 @@ const getAllDiretoriasHome = async (req, res) => {
     nome: diretoria.nome,
     tipo: diretoria.tipo,
     descricao: diretoria.descricao,
+    instagram: diretoria.instagram,
     imagemUrl: diretoria.imagemUrl,
     userId: diretoria.userId,
     _id: diretoria[`${id}`],

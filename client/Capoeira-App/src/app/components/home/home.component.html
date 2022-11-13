@@ -3,16 +3,16 @@
     <img src="/assets/logo.png" alt="">
     <h1 class="text-center">Bem-vindo ao FECARJ!</h1>
   </div>
-  <video autoplay loop>
+  <!-- <video autoplay loop>
     <source src="./assets/file.mp4" type="video/mp4">
     Seu navegador não suporta esse tipo de vídeo.
-  </video>
+  </video> -->
 </div>
 
-<div class="container carousel mt-4">
+<div class="container carousel mt-4" *ngIf="eventos">
   <app-titulo-container [titulo]="'Eventos & Atividades'"></app-titulo-container>
   <swiper
-    style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff"
+    style="--swiper-navigation-color: #edcd03;--swiper-pagination-color: #edcd03"
     [spaceBetween]="10"
     [navigation]="true"
     [thumbs]="{ swiper: thumbsSwiper }"

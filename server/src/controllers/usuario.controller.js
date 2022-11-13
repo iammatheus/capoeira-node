@@ -1,6 +1,9 @@
+import jwt from 'jsonwebtoken';
 import {
   todos, criar, deletar, atualizar, obterPorId,
 } from '../services/usuario.services';
+
+const SECRET = 'teste';
 
 const getAll = async (req, res) => {
   const users = await todos();
@@ -36,11 +39,23 @@ const getUserById = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { email, senha } = req.body;
+  const { nome, email, senha } = req.body;
   const { id } = req.params;
 
-  const user = await atualizar({ id, email, senha });
-  return res.status(200).json(user);
+  await atualizar({
+    id, nome, email, senha,
+  });
+
+  const token = jwt.sign(
+    {
+      userId: id,
+      nome,
+      email,
+    },
+    SECRET,
+  );
+
+  return res.status(200).json({ token, nome });
 };
 
 export {

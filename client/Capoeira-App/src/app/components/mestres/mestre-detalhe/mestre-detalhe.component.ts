@@ -88,7 +88,8 @@ export class MestreDetalheComponent implements OnInit {
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       tipo: ['', [Validators.minLength(2), Validators.maxLength(2)]],
-      descricao: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(500)]],
+      descricao: ['', [Validators.required, Validators.maxLength(500)]],
+      instagram: ['', [Validators.maxLength(15)]],
       imagemUrl: ['']
     });
   }
@@ -107,8 +108,10 @@ export class MestreDetalheComponent implements OnInit {
       this.mestre = (this.estadoSalvar === 'post') ? { ...this.form.value } : { _id: this.mestre._id, ...this.form.value };
 
       this.mestreService[this.estadoSalvar](this.mestre).subscribe(
-        ({ _id }: Mestre) => {
+        ({_id}: Mestre) => {
           this.toastr.success('Mestre salvo com sucesso!', 'Sucesso!');
+          this.router.navigate([`/mestres/detalhe/${_id}`]);
+          console.log(_id);
         },
         (error: any) => {
           this.spinner.hide();

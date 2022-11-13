@@ -3,5 +3,6 @@ export interface Mestre {
   nome: string;
   tipo: string;
   descricao: string;
+  instagram: string;
   imagemUrl: string;
 }

@@ -40,18 +40,15 @@ const postFiliado = async (req, res) => {
   } = req.body;
 
   try {
-    await post({
+    const filiado = await post({
       nome,
       imagemUrl,
       userId,
     });
+    return res.status(200).json(filiado);
   } catch (error) {
     return error;
   }
-
-  return res.status(200).json({
-    message: 'Cadastro efetuado com sucesso!',
-  });
 };
 
 export {

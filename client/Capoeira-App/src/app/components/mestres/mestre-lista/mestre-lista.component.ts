@@ -22,6 +22,7 @@ export class MestreListaComponent implements OnInit {
   public mestres: Mestre[] = [];
   public mestresPorTipo: Mestre[] = [];
   public mestreId = '';
+  public mestreNome = '';
   public largImg = 100;
   public altImg = 75;
   public margemImg = 2;
@@ -107,9 +108,10 @@ export class MestreListaComponent implements OnInit {
     this.exibirImg = !this.exibirImg;
   }
 
-  openModal(event: any, template: TemplateRef<any>, mestreId: string): void {
+  openModal(event: any, template: TemplateRef<any>, mestreId: string, mestreNome: string): void {
     event.stopPropagation();
     this.mestreId = mestreId;
+    this.mestreNome = mestreNome;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
@@ -118,13 +120,14 @@ export class MestreListaComponent implements OnInit {
     this.modalRef?.hide();
     this.mestreService.deleteMestre(this.mestreId).subscribe(
       (res: any) => {
+        console.log(res)
         if (res.message === 'Deletado') {
           this.carregarMestres();
-          this.toastr.success('Mestre deletado.', 'Sucesso!');
+          this.toastr.success('Diretoria deletada.', 'Sucesso!');
         }
       },
       (error: any) => {
-        this.toastr.error(`Erro ao tentar deletar o mestre ${this.mestreId}`, 'Erro!');
+        this.toastr.error('Erro ao deletar diretoria.', 'Erro!');
       }
     ).add(() => this.spinner.hide());
   }

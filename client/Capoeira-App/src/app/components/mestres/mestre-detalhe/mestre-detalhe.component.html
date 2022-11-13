@@ -33,6 +33,15 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-12">
+              <label>Instagram</label>
+                <input type="text" class="form-control" [ngClass]="cssValidator(controls.instagram)" formControlName="instagram"
+                  placeholder="Insira o instagram" [(ngModel)]="mestre.instagram">
+                <div *ngIf="controls.nome.errors?.maxlength" class="invalid-feedback">Nome deve conter no máximo 15
+                  caracteres.</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
                 <label>Descrição</label>
                 <textarea  formControlName="descricao" placeholder="Insira o descricao" [(ngModel)]="mestre.descricao" class="form-control" rows="7" [ngClass]="cssValidator(controls.descricao)"></textarea>
                 <div *ngIf="controls.descricao.errors?.maxlength" class="invalid-feedback">Descrição deve conter no
@@ -72,12 +81,11 @@
               <b>Descrição:</b> {{mestre.descricao}}
             </p>
             <hr>
-            <div class="row">
-              <div class="icon-block col-md-8 iconesSociais">
-                <a href="">
-                  <i class=""></i>
-                </a>
-              </div>
+            <div class="instagram" *ngIf="mestre.instagram">
+              <a href="https://instagram.com/{{mestre.instagram}}" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+                <span> @{{mestre.instagram}}</span>
+              </a>
             </div>
           </div>
         </div>

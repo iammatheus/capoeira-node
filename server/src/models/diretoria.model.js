@@ -5,6 +5,7 @@ const novaDiretoria = async ({
   nome,
   tipo,
   descricao,
+  instagram,
   imagemUrl,
   userId,
 }) => {
@@ -13,17 +14,19 @@ const novaDiretoria = async ({
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
   });
   const { insertedId: _id } = diretoria;
   return {
+    _id,
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
-    _id,
   };
 };
 
@@ -55,6 +58,7 @@ const atualiza = async ({
   nome,
   tipo,
   descricao,
+  instagram,
   imagemUrl,
   userId,
 }) => {
@@ -65,6 +69,7 @@ const atualiza = async ({
       nome,
       tipo,
       descricao,
+      instagram,
       imagemUrl,
       userId,
     },
@@ -73,6 +78,7 @@ const atualiza = async ({
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
   };
