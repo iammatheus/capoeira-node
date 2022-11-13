@@ -6,6 +6,10 @@
   width: 100%;
   margin: 0;
 }
+.swiper-button-prev,
+.swiper-button-next{
+  color: #edcd03;
+}
 
 .swiper-slide-2 {
   text-align: center;
@@ -44,17 +48,21 @@
     font-size: 23px;
   }
 }
-.socials {
+
+.instagram{
   i {
+    color: #E1306C;
     font-size: 20px;
   }
-  .facebook {
-    i { color: #0165E1; }
-  }
-  .instagram{
-    i { color: #E1306C; }
+  a {
+    text-decoration: none;
+    color: unset;
+    :hover{
+      text-decoration: underline;
+    }
   }
 }
+
 .swiper-slide-2{
   display: flex;
   justify-content: center;

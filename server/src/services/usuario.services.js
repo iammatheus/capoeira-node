@@ -32,11 +32,15 @@ const obterPorId = async (id) => {
   return result;
 };
 
-const atualizar = async ({ id, email, senha }) => {
+const atualizar = async ({
+  id, nome, email, senha,
+}) => {
   const usuario = await userExists({ id });
   if (!usuario) return { message: 'Usuário não encontrado.' };
 
-  const user = await atualiza({ id, email, senha });
+  const user = await atualiza({
+    id, nome, email, senha,
+  });
   return user;
 };
 

@@ -6,6 +6,7 @@ const post = async ({
   nome,
   tipo,
   descricao,
+  instagram,
   imagemUrl,
   userId,
 }) => {
@@ -13,6 +14,7 @@ const post = async ({
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
   });
@@ -24,6 +26,7 @@ const atualizar = async ({
   nome,
   tipo,
   descricao,
+  instagram,
   imagemUrl,
   userId,
 }) => {
@@ -35,6 +38,7 @@ const atualizar = async ({
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
   });

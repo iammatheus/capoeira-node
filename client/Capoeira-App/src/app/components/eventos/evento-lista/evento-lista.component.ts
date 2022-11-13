@@ -20,6 +20,7 @@ export class EventoListaComponent implements OnInit {
 
   public eventos: Evento[] = [];
   public eventoId = '';
+  public eventoTitulo = '';
   public largImg = 100;
   public altImg = 75;
   public margemImg = 2;
@@ -98,9 +99,10 @@ export class EventoListaComponent implements OnInit {
     this.exibirImg = !this.exibirImg;
   }
 
-  openModal(event: any, template: TemplateRef<any>, eventoId: string): void {
+  openModal(event: any, template: TemplateRef<any>, eventoId: string, eventoTitulo: string): void {
     event.stopPropagation();
     this.eventoId = eventoId;
+    this.eventoTitulo = eventoTitulo;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 

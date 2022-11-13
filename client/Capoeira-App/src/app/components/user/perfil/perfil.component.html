@@ -35,6 +35,17 @@
             <div *ngIf="controls.nome.errors?.maxlength" class="invalid-feedback">Nome precisa conter no máximo 60
               caracteres.</div>
           </div>
+
+          <div class="form-group col-sm-5">
+            <label>Email</label>
+            <input type="text" class="form-control" placeholder="Insira seu email"
+              [ngClass]="{ 'is-invalid': controls.email.errors && controls.email.touched }" formControlName="email" />
+            <div *ngIf="controls.email.errors?.required" class="invalid-feedback">Nome é obrigatório.</div>
+            <div *ngIf="controls.email.errors?.minlength" class="invalid-feedback">Nome precisa conter no mínimo 2
+              caracteres.</div>
+            <div *ngIf="controls.email.errors?.maxlength" class="invalid-feedback">Nome precisa conter no máximo 60
+              caracteres.</div>
+          </div>
         </div>
 
         <div>
@@ -46,7 +57,7 @@
             <input class="form-control" type="password" placeholder="Digite uma senha"
               [ngClass]="{'is-invalid': controls.senha.errors && controls.senha.touched}" formControlName="senha" />
             <div *ngIf="controls.senha.errors?.required" class="invalid-feedback">Insira uma senha.</div>
-            <div *ngIf="controls.senha.errors?.minlength" class="invalid-feedback">Sua senha precisa conter no mínimo 5 caracteres.</div>
+            <div *ngIf="controls.senha.errors?.minlength" class="invalid-feedback">Sua senha precisa conter no mínimo 3 caracteres.</div>
           </div>
           <div class="form-group col-sm">
             <input class="form-control" type="password" placeholder="Confirme a senha"
@@ -63,7 +74,7 @@
         <button class="btn btn-outline-secondary mr-auto border">
           Cancelar
         </button>
-        <button class="btn btn-success" type="submit">
+        <button class="btn btn-success" type="submit" [disabled]="!form.valid">
           Salvar
         </button>
       </div>

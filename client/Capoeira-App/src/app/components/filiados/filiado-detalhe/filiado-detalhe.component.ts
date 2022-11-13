@@ -112,6 +112,7 @@ export class FiliadoDetalheComponent implements OnInit {
       this.filiadoService[this.estadoSalvar](this.filiado).subscribe(
         ({ _id }: Filiado) => {
           this.toastr.success('Filiado salvo com sucesso!', 'Sucesso!');
+          this.router.navigate([`/filiados/detalhe/${_id}`])
         },
         (error: any) => {
           this.spinner.hide();

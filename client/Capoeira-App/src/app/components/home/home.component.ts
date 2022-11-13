@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
     this.carregaEventos();
     this.carregaMestres();
     this.carregaFiliados();
+    console.log(this.mestresDE)
   }
 
   onChange(file: any) {
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getDiretorias()
     .subscribe((mestres: Mestre[])=> {
       this.mestres = mestres;
+      console.log(mestres);
       mestres.forEach((value, index) => {
         if(value.tipo === 'DN') this.mestresDN[index] = value;
         else this.mestresDE[index] = value;

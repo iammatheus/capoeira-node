@@ -45,16 +45,15 @@
             <i class="{{!exibirImg ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
           </button>
         </th>
-        <th>#</th>
         <th>Tipo</th>
         <th>Nome</th>
-        <th>Descrição</th>
+        <th>Instagram</th>
         <th>Opções</th>
       </tr>
     </thead>
 
     <tbody class="text-center" *ngIf="mestres && mestres.length">
-      <tr *ngFor="let mestre of mestres" (click)="detalheMestre(mestre._id)" style="cursor: pointer" tooltip="Clique para editar">
+      <tr *ngFor="let mestre of mestres">
         <td class="d-none d-md-table-cell">
           <img
             [collapse]="!exibirImg"
@@ -64,13 +63,15 @@
             [style.height.px]="altImg"
             [style.margin.px]="margemImg">
         </td>
-        <td>{{ mestre._id }}</td>
         <td>{{ mestre.tipo == "DE" ? 'Diretoria Executiva' : 'Diretoria de Núcleos'}}</td>
         <td>{{ mestre.nome }}</td>
-        <td style="width: 800px">{{ mestre.descricao }}</td>
+        <td>{{ mestre.instagram }}</td>
         <td>
-          <button class="btn btn-sm btn-danger" tooltip="Excluir" (click)="openModal($event, template, mestre._id)">
+          <button class="btn btn-sm btn-danger" tooltip="Excluir" (click)="openModal($event, template, mestre._id, mestre.nome)">
             <i class="fa fa-trash"></i>
+          </button>
+          <button class="btn btn-sm btn-primary ml-1" tooltip="Editar" (click)="detalheMestre(mestre._id)">
+            <i class="fa fa-edit"></i>
           </button>
         </td>
       </tr>
@@ -103,7 +104,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja realmente excluir o mestre {{mestreId}}?</p>
+    <p>Deseja realmente excluir {{ mestreNome }}?</p>
     <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
     <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
   </div>

@@ -55,7 +55,7 @@ const postEvento = async (req, res) => {
   } = req.body;
 
   try {
-    await post({
+    const evento = await post({
       titulo,
       local,
       dataEvento,
@@ -65,13 +65,10 @@ const postEvento = async (req, res) => {
       userId,
       descricao,
     });
+    return res.status(200).json(evento);
   } catch (error) {
     return error;
   }
-
-  return res.status(200).json({
-    message: 'Evento criado com sucesso!',
-  });
 };
 
 export {

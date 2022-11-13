@@ -11,16 +11,20 @@ import jwt_decode from 'jwt-decode';
 export class NavComponent implements OnInit {
 
   isCollapsed = true;
-  user = jwt_decode(localStorage.getItem('user'));
-  nome = this.user['nome'];
+  nome: string;
 
+  getNome() {
+    const token = localStorage.getItem('user');
+    if(!token) return null;
+    this.nome = token ? token['nome'] : 'Admin';
+  }
 
   constructor(
     private router: Router,
     public accountService: AccountService,
   ) { }
 
-  ngOnInit() { console.log(this.accountService.currentUser$) }
+  ngOnInit() { this.getNome() }
 
   logout(): void {
     this.accountService.logout();

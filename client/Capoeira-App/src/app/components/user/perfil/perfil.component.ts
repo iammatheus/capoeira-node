@@ -22,7 +22,6 @@ export class PerfilComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private activatedRoute: ActivatedRoute,
   ) { }
 
   get controls(): any {
@@ -32,7 +31,6 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.validation();
     this.carregarUsuario();
-
   }
 
   onSubmit(): void {
@@ -40,8 +38,8 @@ export class PerfilComponent implements OnInit {
   }
 
   public atualizarUsuario() {
-    this.userUpdate = { ...this.form.value }
     this.spinner.show();
+    this.userUpdate = { ...this.form.value }
 
     this.accountService.updateUser(this.userUpdate).subscribe(
       () =>  this.toastr.success('Usuário atualizado!', 'success'),
@@ -72,14 +70,14 @@ export class PerfilComponent implements OnInit {
 
   public validation(): void {
     const formOptions: AbstractControlOptions = {
-      validators: ValidatorField.MustMatch('password', 'confirmarSenha')
+      validators: ValidatorField.MustMatch('senha', 'confirmarSenha')
     };
 
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
-      email: [''],
-      senha: ['', [Validators.required, Validators.minLength(4)]],
-      confirmarSenha: ['', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(3)]],
+      confirmarSenha: ['', [Validators.required, Validators.minLength(3)]],
     }, formOptions)
   }
 

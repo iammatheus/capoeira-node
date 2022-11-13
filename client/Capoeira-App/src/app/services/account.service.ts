@@ -17,6 +17,18 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
+  public get decodeToken(): string {
+    try {
+      const token = localStorage.getItem('user');
+      if (!token) return null;
+
+      const tokenDecode = jwt_decode(token);
+      return tokenDecode['userId'];
+    } catch (error) {
+      return error;
+    }
+  }
+
   public register(model: any): Observable<void> {
     return this.http.post<User>(`${this.baseURL}/register`, model).pipe(
       take(1),
@@ -34,9 +46,7 @@ export class AccountService {
       take(1),
       map((res: User) => {
         const user = res;
-        if (user) {
-          this.setCurrentUser(user)
-        }
+        if (user) this.setCurrentUser(user);
       })
     );
   }
@@ -47,17 +57,12 @@ export class AccountService {
     this.currentUserSource.complete();
   }
 
-  public getUser(): Observable<UserUpdate> {
-    return this.http.get<UserUpdate>(`${this.baseURL}/getUser`).pipe(take(1));
-  }
-
   public getUserById(): Observable<UserUpdate> {
-    const userId = jwt_decode(localStorage.getItem('user'));
-    return this.http.get<UserUpdate>(`${this.baseURL}/usuarios/${userId['userId']}`).pipe(take(1));
+    return this.http.get<UserUpdate>(`${this.baseURL}/usuarios/${this.decodeToken}`).pipe(take(1));
   }
 
   public updateUser(model: UserUpdate): Observable<void> {
-    return this.http.put<UserUpdate>(`${this.baseURL}/update/updateUser`, model).pipe(
+    return this.http.put<UserUpdate>(`${this.baseURL}/usuarios/update/${this.decodeToken}`, model).pipe(
       take(1),
       map((user: UserUpdate) => {
         this.setCurrentUser(user);

@@ -21,6 +21,7 @@ export class FiliadoListaComponent implements OnInit {
 
   public filiados: Filiado[] = [];
   public filiadoId = '';
+  public filiadoNome = '';
   public largImg = 100;
   public altImg = 75;
   public margemImg = 2;
@@ -99,9 +100,10 @@ export class FiliadoListaComponent implements OnInit {
     this.exibirImg = !this.exibirImg;
   }
 
-  openModal(event: any, template: TemplateRef<any>, filiadoId: string): void {
+  openModal(event: any, template: TemplateRef<any>, filiadoId: string, filiadoNome: string): void {
     event.stopPropagation();
     this.filiadoId = filiadoId;
+    this.filiadoNome = filiadoNome;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 

@@ -19,6 +19,7 @@ const atualizarDiretoria = async (req, res) => {
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
   } = req.body;
@@ -30,6 +31,7 @@ const atualizarDiretoria = async (req, res) => {
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
   });
@@ -41,25 +43,24 @@ const postDiretoria = async (req, res) => {
     nome,
     tipo,
     descricao,
+    instagram,
     imagemUrl,
     userId,
   } = req.body;
 
   try {
-    await post({
+    const diretoria = await post({
       nome,
       tipo,
       descricao,
+      instagram,
       imagemUrl,
       userId,
     });
+    return res.status(200).json(diretoria);
   } catch (error) {
     return error;
   }
-
-  return res.status(200).json({
-    message: 'Cadastro efetuado com sucesso!',
-  });
 };
 
 export {
